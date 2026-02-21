@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Boutons vers Google Maps</title>
+  
+</head>
+<body>
+
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+  }
+
+  .container {
+    max-width: 480px;
+    margin: auto;
+    padding: 15px;
+  }
+
+  .map-btn {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #0078ff;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    transition: transform 0.1s ease;
+  }
+
+  .map-btn:active {
+    transform: scale(0.97);
+    background: #005fcc;
+  }
+
+  @media (max-width: 480px) {
+    .map-btn {
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
+</style>
+
+<div class="container">
+
+  <button class="map-btn" onclick="navigateTo(48.20759, -1.18199)">
+    Aller au boulot
+  </button>
+
+  <button class="map-btn" onclick="navigateTo(48.29577, -0.92748)">
+    Rentrer
+  </button>
+
+  <button class="map-btn" onclick="navigateTo(48.13081, -1.19306)">
+    Aller à Vitré
+  </button>
+  
+  <button class="map-btn" onclick="navigateTo(48.12525, -1.19695)">
+   Parents
+  </button>
+  
+  <button class="map-btn" onclick="navigateTo(48.05465, -1.14098)">
+    Eric
+  </button>
+  
+  <button class="map-btn" onclick="navigateTo(48.16300, -1.63503)">
+    Zone Decathlon
+  </button>
+  
+  <button class="map-btn" onclick="navigateTo(48.13897, -1.76293)">
+    Ikea
+  </button>
+  
+  <button class="map-btn" onclick="openChargingStations()"> Bornes de recharge autour de moi ⚡ </button>
+  
+  <button class="map-btn" onclick="openFreeChargingStations()"> Bornes gratuites ⚡ </button>
+
+</div>
+
+<script>
+   function navigateTo(lat, lng) {
+    const url = `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${lat},${lng}`;
+    window.open(url, '_blank');
+  }
+  
+   function openChargingStations() {
+    // Ouvre Google Maps avec la recherche "borne de recharge" autour de la position actuelle
+    const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge";
+    window.open(url, "_blank");
+  }
+  
+   function openFreeChargingStations() {
+    const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite";
+    window.open(url, "_blank");
+  }
+</script>
+
+
+</body>
+</html>
