@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Boutons vers Google Maps</title>
-  
+ <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0078ff">
+ 
 </head>
 <body>
 
 
 <style>
-/* --- Mise en page générale mobile --- */
 body {
   margin: 0;
   padding: 0;
@@ -18,63 +19,50 @@ body {
   overflow-x: hidden;
 }
 
-/* --- Conteneur des boutons --- */
+/* Conteneur des boutons */
 .buttons-container {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  padding: 25px;
+  gap: 30px;
+  padding: 30px;
 }
 
-/* --- BOUTONS XXL POUR MOBILE --- */
+/* BOUTONS XXL */
 .map-btn {
   background: #0078ff;
   color: white;
   border: none;
-  padding: 28px 30px;
-  font-size: 26px;
+  padding: 32px 35px;
+  font-size: 30px;
   font-weight: bold;
-  border-radius: 18px;
+  border-radius: 20px;
   text-align: center;
   width: 100%;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
   transition: 0.15s;
 }
 
 .map-btn:active {
-  transform: scale(0.94);
+  transform: scale(0.92);
   background: #005fcc;
 }
 
-/* --- Carte plein écran mobile --- */
+/* Carte plein écran */
 #map {
   width: 100%;
-  height: calc(100vh - 350px); /* laisse la place aux gros boutons */
-  margin-top: 15px;
-  border-radius: 18px;
+  height: calc(100vh - 420px);
+  margin-top: 20px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
-/* --- Petits écrans (iPhone SE, Android compact) --- */
+/* Petits écrans */
 @media (max-width: 400px) {
   .map-btn {
-    font-size: 24px;
-    padding: 24px;
+    font-size: 26px;
+    padding: 28px;
   }
-
-  #map {
-    height: calc(100vh - 330px);
-  }
-}
-
-/* --- Très grands écrans mobiles (tablettes) --- */
-@media (min-width: 600px) {
-  .map-btn {
-    font-size: 30px;
-    padding: 30px;
-  }
-
   #map {
     height: calc(100vh - 380px);
   }
@@ -184,13 +172,14 @@ L.polyline(polyPoints, {
 }).addTo(map);
 
 
-
+if ("serviceWorker" in navigator) { navigator.serviceWorker.register("sw.js"); }
 </script>
 
 
 </body>
   <footer>version 0.1.2 coelod</footer>
 </html>
+
 
 
 
