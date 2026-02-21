@@ -104,84 +104,23 @@
     const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite";
     window.open(url, "_blank");
   }
-  function openMapsContournement() {
+function openMapsContournement() {
   window.open(
-    "https://www.google.com/maps/dir/?api=1&destination=48.24222,-1.01690",
+    "https://www.google.com/maps/dir/?api=1&origin=48.24222,-1.01690&destination=48.22305,-1.03856&waypoints=48.23905,-1.01416|48.22961,-1.01803|48.22985,-1.03119|48.22952,-1.03176|48.22847,-1.03234|48.22819,-1.03363|48.22805,-1.03414",
     "_blank"
   );
 }
 
-function navigateToContournement() {
-  let bounds = L.latLngBounds(polyPoints);
-  map.fitBounds(bounds);
-}
-  let contournement = [
-  {
-    lat: 48.24222, lng: -1.01690, radius: 200,
-    icon: "images/gauche.png"
-  },
-  {
-    lat: 48.23905, lng: -1.01416, radius: 200,
-    icon: "images/2emedroite.png"
-  },
-  {
-    lat: 48.22961, lng: -1.01803, radius: 200,
-    icon: "images/droite.png"
-  },
-  {
-    lat: 48.22985, lng: -1.03119, radius: 100,
-    icon: "images/gauche.png"
-  },
-  {
-    lat: 48.22952, lng: -1.03176, radius: 200,
-    icon: "images/2emedroite.png"
-  },
-  {
-    lat: 48.22847, lng: -1.03234, radius: 100,
-    icon: "images/gauche.png"
-  },
-  {
-    lat: 48.22819, lng: -1.03363, radius: 100,
-    icon: "images/droite.png"
-  },
-  {
-    lat: 48.22805, lng: -1.03414, radius: 100,
-    icon: "images/gauche.png"
-  },
-  {
-    lat: 48.22305, lng: -1.03856, radius: 200,
-    icon: "images/droite.png"
-  }
-];
-contournement.forEach(p => {
-  L.circle([p.lat, p.lng], {
-    radius: p.radius,
-    color: "blue",
-    fillColor: "blue",
-    fillOpacity: 0.2
-  }).addTo(map);
 
-  L.marker([p.lat, p.lng], {
-    icon: L.icon({
-      iconUrl: p.icon,
-      iconSize: [40, 40]
-    })
-  }).addTo(map);
-});
-let polyPoints = contournement.map(p => [p.lat, p.lng]);
-
-L.polyline(polyPoints, {
-  color: "red",
-  weight: 5,
-  opacity: 0.9
-}).addTo(map);
 
 
 </script>
 
 
 </body>
+  <footer>version 0.1.1 coelod</footer>
 </html>
+
 
 
 
