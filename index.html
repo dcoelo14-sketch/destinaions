@@ -3,191 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <title>Boutons vers Google Maps</title>
- <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0078ff">
- 
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0078ff">
+
+  <!-- STYLE MOBILE XXL -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #e9e9e9;
+      overflow-x: hidden;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 30px;
+    }
+
+    .map-btn {
+      background: #0078ff;
+      color: white;
+      border: none;
+      padding: 32px 35px;
+      font-size: 30px;
+      font-weight: bold;
+      border-radius: 20px;
+      text-align: center;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+      transition: 0.15s;
+    }
+
+    .map-btn:active {
+      transform: scale(0.92);
+      background: #005fcc;
+    }
+
+    @media (max-width: 400px) {
+      .map-btn {
+        font-size: 26px;
+        padding: 28px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
+<div class="buttons-container">
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #e9e9e9;
-  overflow-x: hidden;
-}
+  <button class="map-btn" onclick="navigateTo(48.20759, -1.18199)">Aller au boulot</button>
+  <button class="map-btn" onclick="navigateTo(48.29577, -0.92748)">Rentrer</button>
+  <button class="map-btn" onclick="navigateTo(48.13081, -1.19306)">Aller à Vitré</button>
+  <button class="map-btn" onclick="navigateTo(48.12525, -1.19695)">Parents</button>
+  <button class="map-btn" onclick="navigateTo(48.05465, -1.14098)">Eric</button>
+  <button class="map-btn" onclick="navigateTo(48.16300, -1.63503)">Zone Decathlon</button>
+  <button class="map-btn" onclick="navigateTo(48.13897, -1.76293)">Ikea</button>
 
-/* Conteneur des boutons */
-.buttons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  padding: 30px;
-}
+  <button class="map-btn" onclick="openChargingStations()">Bornes de recharge ⚡</button>
+  <button class="map-btn" onclick="openFreeChargingStations()">Bornes gratuites ⚡</button>
 
-/* BOUTONS XXL */
-.map-btn {
-  background: #0078ff;
-  color: white;
-  border: none;
-  padding: 32px 35px;
-  font-size: 30px;
-  font-weight: bold;
-  border-radius: 20px;
-  text-align: center;
-  width: 90%;
-  cursor: pointer;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-  transition: 0.15s;
-}
-
-.map-btn:active {
-  transform: scale(0.92);
-  background: #005fcc;
-}
-
-/* Carte plein écran */
-#map {
-  width: 100%;
-  height: calc(100vh - 420px);
-  margin-top: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* Petits écrans */
-@media (max-width: 400px) {
-  .map-btn {
-    font-size: 26px;
-    padding: 28px;
-  }
-  #map {
-    height: calc(100vh - 380px);
-  }
-}
-
-</style>
-
-<div class="container">
-
-  <button class="map-btn" onclick="navigateTo(48.20759, -1.18199)">
-    Aller au boulot
-  </button>
-
-  <button class="map-btn" onclick="navigateTo(48.29577, -0.92748)">
-    Rentrer
-  </button>
-
-  <button class="map-btn" onclick="navigateTo(48.13081, -1.19306)">
-    Aller à Vitré
-  </button>
-  
-  <button class="map-btn" onclick="navigateTo(48.12525, -1.19695)">
-   Parents
-  </button>
-  
-  <button class="map-btn" onclick="navigateTo(48.05465, -1.14098)">
-    Eric
-  </button>
-  
-  <button class="map-btn" onclick="navigateTo(48.16300, -1.63503)">
-    Zone Decathlon
-  </button>
-  
-  <button class="map-btn" onclick="navigateTo(48.13897, -1.76293)">
-    Ikea
-  </button>
-  
-  <button class="map-btn" onclick="openChargingStations()"> Bornes de recharge autour de moi ⚡ </button>
-  
-  <button class="map-btn" onclick="openFreeChargingStations()"> Bornes gratuites ⚡ </button>
-  
-<button class="map-btn" onclick="openMapsContournement()">contournement juvigné</button>
-
+  <button class="map-btn" onclick="openMapsContournement()">Contournement Juvigné</button>
 
 </div>
 
 <script>
-   function navigateTo(lat, lng) {
+  function navigateTo(lat, lng) {
     const url = `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${lat},${lng}`;
     window.open(url, '_blank');
   }
-  
-   function openChargingStations() {
-    // Ouvre Google Maps avec la recherche "borne de recharge" autour de la position actuelle
-    const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge";
-    window.open(url, "_blank");
+
+  function openChargingStations() {
+    window.open("https://www.google.com/maps/search/?api=1&query=borne+de+recharge", "_blank");
   }
-  
-   function openFreeChargingStations() {
-    const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite";
-    window.open(url, "_blank");
+
+  function openFreeChargingStations() {
+    window.open("https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite", "_blank");
   }
-function openMapsContournement() {
-  window.open(
-    "https://www.google.com/maps/dir/?api=1&origin=48.24222,-1.01690&destination=48.22305,-1.03856&waypoints=48.23905,-1.01416|48.22961,-1.01803|48.22985,-1.03119|48.22952,-1.03176|48.22847,-1.03234|48.22819,-1.03363|48.22805,-1.03414",
-    "_blank"
-  );
-}
-let contournement = [
-  { lat: 48.24222, lng: -1.01690, radius: 200, icon: "images/gauche.png" },
-  { lat: 48.23905, lng: -1.01416, radius: 200, icon: "images/2emedroite.png" },
-  { lat: 48.22961, lng: -1.01803, radius: 200, icon: "images/droite.png" },
-  { lat: 48.22985, lng: -1.03119, radius: 100, icon: "images/gauche.png" },
-  { lat: 48.22952, lng: -1.03176, radius: 200, icon: "images/2emedroite.png" },
-  { lat: 48.22847, lng: -1.03234, radius: 100, icon: "images/gauche.png" },
-  { lat: 48.22819, lng: -1.03363, radius: 100, icon: "images/droite.png" },
-  { lat: 48.22805, lng: -1.03414, radius: 100, icon: "images/gauche.png" },
-  { lat: 48.22305, lng: -1.03856, radius: 200, icon: "images/droite.png" }
-];
-contournement.forEach(p => {
 
-  // cercle bleu
-  L.circle([p.lat, p.lng], {
-    radius: p.radius,
-    color: "blue",
-    fillColor: "blue",
-    fillOpacity: 0.2
-  }).addTo(map);
+  function openMapsContournement() {
+    window.open(
+      "https://www.google.com/maps/dir/?api=1&origin=48.24222,-1.01690&destination=48.22305,-1.03856&waypoints=48.23905,-1.01416|48.22961,-1.01803|48.22985,-1.03119|48.22952,-1.03176|48.22847,-1.03234|48.22819,-1.03363|48.22805,-1.03414",
+      "_blank"
+    );
+  }
 
-  // panneau PNG
-  L.marker([p.lat, p.lng], {
-    icon: L.icon({
-      iconUrl: p.icon,
-      iconSize: [60, 60],   // taille du panneau
-      iconAnchor: [30, 30]  // centre du panneau
-    })
-  }).addTo(map);
-
-});
-
-let polyPoints = contournement.map(p => [p.lat, p.lng]);
-
-L.polyline(polyPoints, {
-  color: "red",
-  weight: 5,
-  opacity: 0.9
-}).addTo(map);
-
-
-if ("serviceWorker" in navigator) { navigator.serviceWorker.register("sw.js"); }
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
 </script>
 
+<footer>version 0.1.2 coelod</footer>
 
 </body>
-  <footer>version 0.1.2 coelod</footer>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
