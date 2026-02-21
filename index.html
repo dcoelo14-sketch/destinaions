@@ -104,7 +104,10 @@
     const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite";
     window.open(url, "_blank");
   }
-
+function navigateToContournement() {
+  let bounds = L.latLngBounds(polyPoints);
+  map.fitBounds(bounds);
+}
   let contournement = [
   {
     lat: 48.24222, lng: -1.01690, radius: 200,
@@ -165,14 +168,12 @@ L.polyline(polyPoints, {
   weight: 5,
   opacity: 0.9
 }).addTo(map);
-function navigateToContournement() {
-  let bounds = L.latLngBounds(polyPoints);
-  map.fitBounds(bounds);
-}
+
 
 </script>
 
 
 </body>
 </html>
+
 
