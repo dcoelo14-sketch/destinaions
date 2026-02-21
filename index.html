@@ -110,7 +110,45 @@ function openMapsContournement() {
     "_blank"
   );
 }
+let contournement = [
+  { lat: 48.24222, lng: -1.01690, radius: 200, icon: "images/gauche.png" },
+  { lat: 48.23905, lng: -1.01416, radius: 200, icon: "images/2emedroite.png" },
+  { lat: 48.22961, lng: -1.01803, radius: 200, icon: "images/droite.png" },
+  { lat: 48.22985, lng: -1.03119, radius: 100, icon: "images/gauche.png" },
+  { lat: 48.22952, lng: -1.03176, radius: 200, icon: "images/2emedroite.png" },
+  { lat: 48.22847, lng: -1.03234, radius: 100, icon: "images/gauche.png" },
+  { lat: 48.22819, lng: -1.03363, radius: 100, icon: "images/droite.png" },
+  { lat: 48.22805, lng: -1.03414, radius: 100, icon: "images/gauche.png" },
+  { lat: 48.22305, lng: -1.03856, radius: 200, icon: "images/droite.png" }
+];
+contournement.forEach(p => {
 
+  // cercle bleu
+  L.circle([p.lat, p.lng], {
+    radius: p.radius,
+    color: "blue",
+    fillColor: "blue",
+    fillOpacity: 0.2
+  }).addTo(map);
+
+  // panneau PNG
+  L.marker([p.lat, p.lng], {
+    icon: L.icon({
+      iconUrl: p.icon,
+      iconSize: [60, 60],   // taille du panneau
+      iconAnchor: [30, 30]  // centre du panneau
+    })
+  }).addTo(map);
+
+});
+
+let polyPoints = contournement.map(p => [p.lat, p.lng]);
+
+L.polyline(polyPoints, {
+  color: "red",
+  weight: 5,
+  opacity: 0.9
+}).addTo(map);
 
 
 
@@ -118,8 +156,9 @@ function openMapsContournement() {
 
 
 </body>
-  <footer>version 0.1.1 coelod</footer>
+  <footer>version 0.1.2 coelod</footer>
 </html>
+
 
 
 
