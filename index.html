@@ -82,9 +82,9 @@
   <button class="map-btn" onclick="openChargingStations()"> Bornes de recharge autour de moi ⚡ </button>
   
   <button class="map-btn" onclick="openFreeChargingStations()"> Bornes gratuites ⚡ </button>
-<button class="map-btn" onclick="navigateToContournement()">
-  contournement juvigné
-</button>
+  
+<button class="map-btn" onclick="openMapsContournement()">contournement juvigné</button>
+
 
 </div>
 
@@ -104,6 +104,13 @@
     const url = "https://www.google.com/maps/search/?api=1&query=borne+de+recharge+gratuite";
     window.open(url, "_blank");
   }
+  function openMapsContournement() {
+  window.open(
+    "https://www.google.com/maps/dir/?api=1&destination=48.24222,-1.01690",
+    "_blank"
+  );
+}
+
 function navigateToContournement() {
   let bounds = L.latLngBounds(polyPoints);
   map.fitBounds(bounds);
@@ -175,5 +182,6 @@ L.polyline(polyPoints, {
 
 </body>
 </html>
+
 
 
